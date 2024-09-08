@@ -124,7 +124,7 @@ var Register;
                         emailLabel.style.color = '';
                         emailInput.style.outlineColor = '';
                         emailInput.style.borderColor = '';
-                        window.location.href = "home.html";
+                        window.location.href = "../my-account.html";
                     }
                     else {
                         submitButton.classList.remove('loading');

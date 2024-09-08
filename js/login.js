@@ -122,7 +122,7 @@ var Login;
                         passwordInput.style.color = '';
                         passwordInput.style.outlineColor = '';
                         passwordInput.style.borderColor = '';
-                        window.location.href = "home.html";
+                        window.location.href = "../my-account.html";
                     }
                     else {
                         submitButton.classList.remove('loading');
