@@ -1,0 +1,39 @@
+.container {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 0 18px;
+  max-width: 100%;
+}
+
+.home {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.welcome {
+  color: #202020;
+}
+
+.logout-button {
+  background-color: transparent;
+  font-weight: 600;
+  color: #0d7c66;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.background {
+  position: absolute;
+  bottom: 0;
+  z-index: -99;
+  width: 100%;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 800px) {
+  .welcome {
+    font-size: 14px;
+  }
+}
