@@ -5,7 +5,7 @@ const config = {
     SERVER_URL: 'http://localhost:3000',
   },
   production: {
-    SERVER_URL: '',
+    SERVER_URL: 'https://simple-login-and-register-full-stack-app.onrender.com',
   },
 };
 
