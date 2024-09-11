@@ -3,8 +3,8 @@
     "target": "ESNext",
     "module": "ESNext",
     // "moduleResolution": "node",
-    "outDir": "./js",
-    "rootDir": "./ts",
+    "outDir": "./dist",
+    "rootDir": "./src/ts",
     "esModuleInterop": true,
     // "isolatedModules": true
   },

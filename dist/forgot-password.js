@@ -1,4 +1,5 @@
 import { validateInput, validateEmail } from './utils.js';
+import config from './config.js';
 const form = document.querySelector('.form');
 const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +14,7 @@ const handleFormSubmit = (e) => {
         return;
     const dataFetching = async () => {
         const submitButton = document.querySelector('.submit-button');
-        const url = 'http://localhost:3000/api/auth/forgot-password';
+        const url = `${config.SERVER_URL}api/auth/forgot-password`;
         const bodyData = JSON.stringify({ email: emailInput.value });
         submitButton.classList.add('loading');
         try {

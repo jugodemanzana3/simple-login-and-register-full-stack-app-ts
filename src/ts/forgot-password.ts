@@ -1,5 +1,7 @@
 import { validateInput, validateEmail } from './utils.js';
 
+import config from './config.js';
+
 const form = document.querySelector('.form') as HTMLFormElement;
 
 const handleFormSubmit = (e: Event) => {
@@ -19,7 +21,7 @@ const handleFormSubmit = (e: Event) => {
 
   const dataFetching = async () => {
     const submitButton = document.querySelector('.submit-button') as HTMLButtonElement;
-    const url = 'http://localhost:3000/api/auth/forgot-password';
+    const url = `${config.SERVER_URL}api/auth/forgot-password`;
 
     const bodyData = JSON.stringify({ email: emailInput.value });
 
