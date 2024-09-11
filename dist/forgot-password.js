@@ -23,7 +23,7 @@ const handleFormSubmit = (e) => {
         return;
     const dataFetching = () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = document.querySelector('.submit-button');
-        const url = `${config.SERVER_URL}api/auth/forgot-password`;
+        const url = `${config.SERVER_URL}/api/auth/forgot-password`;
         const bodyData = JSON.stringify({ email: emailInput.value });
         submitButton.classList.add('loading');
         try {
