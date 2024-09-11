@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { validateInputs, confirmPasswordMatch, validatePasswordLength } from './utils.js';
 //
 let token;
@@ -89,13 +98,13 @@ const handleFormSubmit = (e) => {
         return;
     if (validatePasswordLength(passwordInput.value, errorMessage, passwordLabel, passwordInput))
         return;
-    const dataFetching = async () => {
+    const dataFetching = () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = document.querySelector('.submit-button');
         const url = 'http://localhost:3000/api/auth/reset-password';
         const bodyData = JSON.stringify({ newPassword: confirmPasswordInput.value });
         submitButton.classList.add('loading');
         try {
-            const res = await fetch(url, {
+            const res = yield fetch(url, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -103,7 +112,7 @@ const handleFormSubmit = (e) => {
                 },
                 body: bodyData,
             });
-            const data = await res.json();
+            const data = yield res.json();
             if (res.ok) {
                 submitButton.classList.remove('loading');
                 alertMessage.textContent = data.message;
@@ -133,7 +142,7 @@ const handleFormSubmit = (e) => {
             submitButton.classList.remove('loading');
             console.log('Error');
         }
-    };
+    });
     dataFetching();
 };
 form.addEventListener('submit', handleFormSubmit);
