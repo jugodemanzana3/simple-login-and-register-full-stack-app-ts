@@ -1,7 +1,9 @@
+import config from './config.js';
+
 //
 const verifyToken = async () => {
   const userName = document.querySelector('.user-name') as HTMLElement;
-  const url = 'http://localhost:3000/api/auth/verify';
+  const url = `${config.SERVER_URL}/api/auth/verify`;
 
   try {
     const res = await fetch(url, {
@@ -14,7 +16,7 @@ const verifyToken = async () => {
 
       userName.textContent = data.name;
     } else {
-      window.location.href = '../login.html';
+      window.location.href = './login.html';
     }
   } catch (error) {
     console.log(error);
@@ -27,7 +29,7 @@ verifyToken();
 const logoutButton = document.querySelector('.logout-button') as HTMLButtonElement;
 
 const handleLogoutButton = () => {
-  const url = 'http://localhost:3000/api/auth/logout';
+  const url = `${config.SERVER_URL}/api/auth/logout`;
 
   const logout = async () => {
     try {
@@ -37,7 +39,7 @@ const handleLogoutButton = () => {
       });
 
       if (res.ok) {
-        window.location.href = '../login.html';
+        window.location.href = './login.html';
       } else {
         console.log('Error');
       }

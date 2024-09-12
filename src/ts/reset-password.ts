@@ -1,5 +1,7 @@
 import { validateInputs, confirmPasswordMatch, validatePasswordLength } from './utils.js';
 
+import config from './config.js';
+
 //
 let token: string;
 
@@ -108,7 +110,7 @@ const handleFormSubmit = (e: Event) => {
 
   const dataFetching = async () => {
     const submitButton = document.querySelector('.submit-button') as HTMLButtonElement;
-    const url = 'http://localhost:3000/api/auth/reset-password';
+    const url = `${config.SERVER_URL}/api/auth/reset-password`;
 
     const bodyData = JSON.stringify({ newPassword: confirmPasswordInput.value });
 
@@ -140,7 +142,7 @@ const handleFormSubmit = (e: Event) => {
         confirmPasswordInput.value = '';
 
         setTimeout(() => {
-          window.location.href = '../login.html';
+          window.location.href = './login.html';
         }, 3000);
       } else {
         submitButton.classList.remove('loading');

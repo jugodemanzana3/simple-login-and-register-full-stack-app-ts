@@ -59,7 +59,7 @@ const handleFormSubmit = (e: Event) => {
         emailInput.value = '';
 
         setTimeout(() => {
-          window.location.href = '../login.html';
+          window.location.href = './login.html';
         }, 3000);
       } else {
         submitButton.classList.remove('loading');

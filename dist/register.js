@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { validateEmail, validateInputs, validatePasswordLength, checkAuth } from './utils.js';
+import config from './config.js';
 //
 checkAuth('my-account');
 // Show and hide password
@@ -80,7 +81,7 @@ const handleFormSubmit = (e) => {
         const nameInput = document.querySelector('#name-input');
         const submitButton = document.querySelector('.submit-button');
         const alertMessage = document.querySelector('.alert-message');
-        const url = 'http://localhost:3000/api/auth/register';
+        const url = `${config.SERVER_URL}/api/auth/register`;
         submitButton.classList.add('loading');
         const data = {
             name: nameInput.value,
@@ -111,7 +112,7 @@ const handleFormSubmit = (e) => {
                 emailInput.style.outlineColor = '';
                 emailInput.style.borderColor = '';
                 setTimeout(() => {
-                    window.location.href = '../my-account.html';
+                    window.location.href = './my-account.html';
                 }, 3000);
             }
             else {

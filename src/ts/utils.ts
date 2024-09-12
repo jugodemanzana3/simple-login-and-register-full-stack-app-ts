@@ -1,3 +1,5 @@
+import config from './config.js';
+
 const validateEmail = (emailValue: string, errorMessage: HTMLElement, emailLabel: HTMLElement, emailInput: HTMLInputElement) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -80,7 +82,7 @@ const validatePasswordLength = (password: string, errorMessage: any, passwordLab
 };
 
 const checkAuth = async (page: string) => {
-  const url = 'http://localhost:3000/api/auth/verify';
+  const url = `${config.SERVER_URL}/api/auth/verify`;
 
   try {
     const res = await fetch(url, {

@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import config from './config.js';
 const validateEmail = (emailValue, errorMessage, emailLabel, emailInput) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailValue)) {
@@ -72,7 +73,7 @@ const validatePasswordLength = (password, errorMessage, passwordLabel, passwordI
     }
 };
 const checkAuth = (page) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = 'http://localhost:3000/api/auth/verify';
+    const url = `${config.SERVER_URL}/api/auth/verify`;
     try {
         const res = yield fetch(url, {
             method: 'GET',

@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { validateInputs, confirmPasswordMatch, validatePasswordLength } from './utils.js';
+import config from './config.js';
 //
 let token;
 const getToken = () => {
@@ -100,7 +101,7 @@ const handleFormSubmit = (e) => {
         return;
     const dataFetching = () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = document.querySelector('.submit-button');
-        const url = 'http://localhost:3000/api/auth/reset-password';
+        const url = `${config.SERVER_URL}/api/auth/reset-password`;
         const bodyData = JSON.stringify({ newPassword: confirmPasswordInput.value });
         submitButton.classList.add('loading');
         try {
@@ -123,7 +124,7 @@ const handleFormSubmit = (e) => {
                 passwordInput.value = '';
                 confirmPasswordInput.value = '';
                 setTimeout(() => {
-                    window.location.href = '../login.html';
+                    window.location.href = './login.html';
                 }, 3000);
             }
             else {

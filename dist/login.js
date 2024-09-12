@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { validateEmail, validateInputs, checkAuth } from './utils.js';
+import config from './config.js';
 //
 checkAuth('my-account');
 // Show and hide password
@@ -79,7 +80,7 @@ const handleFormSubmit = (e) => {
     const dataFetching = () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = document.querySelector('.submit-button');
         const alertMessage = document.querySelector('.alert-message');
-        const url = 'http://localhost:3000/api/auth/login';
+        const url = `${config.SERVER_URL}/api/auth/login`;
         submitButton.classList.add('loading');
         const data = {
             email: emailInput.value,
@@ -109,7 +110,7 @@ const handleFormSubmit = (e) => {
                 passwordInput.style.outlineColor = '';
                 passwordInput.style.borderColor = '';
                 setTimeout(() => {
-                    window.location.href = '../my-account.html';
+                    window.location.href = './my-account.html';
                 }, 3000);
             }
             else {

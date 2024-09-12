@@ -1,5 +1,7 @@
 import { validateEmail, validateInputs, checkAuth } from './utils.js';
 
+import config from './config.js';
+
 //
 checkAuth('my-account');
 
@@ -86,7 +88,7 @@ const handleFormSubmit = (e: Event) => {
   const dataFetching = async () => {
     const submitButton = document.querySelector('.submit-button') as HTMLButtonElement;
     const alertMessage = document.querySelector('.alert-message') as HTMLElement;
-    const url: string = 'http://localhost:3000/api/auth/login';
+    const url = `${config.SERVER_URL}/api/auth/login`;
 
     submitButton.classList.add('loading');
 
@@ -127,7 +129,7 @@ const handleFormSubmit = (e: Event) => {
         passwordInput.style.borderColor = '';
 
         setTimeout(() => {
-          window.location.href = '../my-account.html';
+          window.location.href = './my-account.html';
         }, 3000);
       } else {
         submitButton.classList.remove('loading');

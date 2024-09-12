@@ -50,7 +50,7 @@ const handleFormSubmit = (e) => {
                 emailInput.style.borderColor = '';
                 emailInput.value = '';
                 setTimeout(() => {
-                    window.location.href = '../login.html';
+                    window.location.href = './login.html';
                 }, 3000);
             }
             else {
