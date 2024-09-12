@@ -3,7 +3,7 @@ import { validateEmail, validateInputs, checkAuth } from './utils.js';
 import config from './config.js';
 
 //
-checkAuth('my-account');
+// checkAuth('my-account');
 
 // Show and hide password
 const passwordInput = document.querySelector('#password-input') as HTMLInputElement;

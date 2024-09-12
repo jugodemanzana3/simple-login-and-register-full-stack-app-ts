@@ -1,4 +1,4 @@
-const ENV = 'production';
+const ENV = 'development';
 
 const config = {
   development: {
@@ -12,3 +12,5 @@ const config = {
 export default config[ENV];
 
 // API_URL
+// production
+// development

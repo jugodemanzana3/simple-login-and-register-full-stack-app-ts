@@ -24,12 +24,33 @@
   font-size: 14px;
 }
 
+.alert-message {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  top: 12px;
+  position: fixed;
+  font-size: 14px;
+  color: #202020;
+  font-weight: 700;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  display: none;
+}
+
 .background {
   position: absolute;
   bottom: 0;
   z-index: -99;
   width: 100%;
   pointer-events: none;
+}
+
+/* DOM */
+.visible {
+  display: block;
+  pointer-events: all;
 }
 
 @media screen and (max-width: 800px) {

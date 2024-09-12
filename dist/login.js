@@ -7,10 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { validateEmail, validateInputs, checkAuth } from './utils.js';
+import { validateEmail, validateInputs } from './utils.js';
 import config from './config.js';
 //
-checkAuth('my-account');
+// checkAuth('my-account');
 // Show and hide password
 const passwordInput = document.querySelector('#password-input');
 const eyeIcon = document.querySelector('.eye-icon');
