@@ -1,6 +1,11 @@
 import config from './config.js';
 
-const validateEmail = (emailValue: string, errorMessage: HTMLElement, emailLabel: HTMLElement, emailInput: HTMLInputElement) => {
+const validateEmail = (
+  emailValue: string,
+  errorMessage: HTMLElement,
+  emailLabel: HTMLElement,
+  emailInput: HTMLInputElement
+) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(emailValue)) {
