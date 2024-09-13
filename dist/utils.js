@@ -76,7 +76,6 @@ const checkAuth = (page) => __awaiter(void 0, void 0, void 0, function* () {
     const url = `${config.SERVER_URL}/api/auth/verify`;
     try {
         const res = yield fetch(url, {
-            method: 'GET',
             credentials: 'include',
         });
         if (res.ok) {

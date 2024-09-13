@@ -7,10 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { validateEmail, validateInputs } from './utils.js';
+import { validateEmail, validateInputs, checkAuth } from './utils.js';
 import config from './config.js';
 //
-// checkAuth('my-account');
+checkAuth('my-account');
 // Show and hide password
 const passwordInput = document.querySelector('#password-input');
 const eyeIcon = document.querySelector('.eye-icon');
@@ -99,6 +99,7 @@ const handleFormSubmit = (e) => {
             if (res.ok) {
                 submitButton.classList.remove('loading');
                 const data = yield res.json();
+                // console.log("token:", data)
                 alertMessage.textContent = data.message;
                 alertMessage.classList.add('visible');
                 setTimeout(() => {
@@ -109,9 +110,9 @@ const handleFormSubmit = (e) => {
                 passwordInput.style.color = '';
                 passwordInput.style.outlineColor = '';
                 passwordInput.style.borderColor = '';
-                setTimeout(() => {
-                    window.location.href = './my-account.html';
-                }, 3000);
+                // setTimeout(() => {
+                //   window.location.href = './my-account.html';
+                // }, 3000);
             }
             else {
                 submitButton.classList.remove('loading');

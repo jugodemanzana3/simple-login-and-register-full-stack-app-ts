@@ -3,7 +3,7 @@ import { validateEmail, validateInputs, checkAuth } from './utils.js';
 import config from './config.js';
 
 //
-// checkAuth('my-account');
+checkAuth('my-account');
 
 // Show and hide password
 const passwordInput = document.querySelector('#password-input') as HTMLInputElement;
@@ -114,6 +114,8 @@ const handleFormSubmit = (e: Event) => {
 
         const data = await res.json();
 
+        // console.log("token:", data)
+
         alertMessage.textContent = data.message;
         alertMessage.classList.add('visible');
 
@@ -128,9 +130,9 @@ const handleFormSubmit = (e: Event) => {
         passwordInput.style.outlineColor = '';
         passwordInput.style.borderColor = '';
 
-        setTimeout(() => {
-          window.location.href = './my-account.html';
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.href = './my-account.html';
+        // }, 3000);
       } else {
         submitButton.classList.remove('loading');
 

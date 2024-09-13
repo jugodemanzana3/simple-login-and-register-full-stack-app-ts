@@ -88,10 +88,8 @@ const validatePasswordLength = (password: string, errorMessage: any, passwordLab
 
 const checkAuth = async (page: string) => {
   const url = `${config.SERVER_URL}/api/auth/verify`;
-
   try {
     const res = await fetch(url, {
-      method: 'GET',
       credentials: 'include',
     });
 

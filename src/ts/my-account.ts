@@ -7,7 +7,6 @@ const verifyToken = async () => {
 
   try {
     const res = await fetch(url, {
-      method: 'GET',
       credentials: 'include',
     });
 

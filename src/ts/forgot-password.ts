@@ -34,7 +34,6 @@ const handleFormSubmit = (e: Event) => {
           'Content-Type': 'application/json',
         },
         body: bodyData,
-        credentials: 'include',
       });
 
       const data = await res.json();

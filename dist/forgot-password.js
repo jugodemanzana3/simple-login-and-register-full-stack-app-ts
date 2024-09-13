@@ -33,7 +33,6 @@ const handleFormSubmit = (e) => {
                     'Content-Type': 'application/json',
                 },
                 body: bodyData,
-                credentials: 'include',
             });
             const data = yield res.json();
             if (res.ok) {
