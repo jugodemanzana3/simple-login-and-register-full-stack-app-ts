@@ -130,9 +130,9 @@ const handleFormSubmit = (e: Event) => {
         passwordInput.style.outlineColor = '';
         passwordInput.style.borderColor = '';
 
-        // setTimeout(() => {
-        //   window.location.href = './my-account.html';
-        // }, 3000);
+        setTimeout(() => {
+          window.location.href = './my-account.html';
+        }, 3000);
       } else {
         submitButton.classList.remove('loading');
 
