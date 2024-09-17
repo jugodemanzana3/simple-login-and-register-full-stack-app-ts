@@ -1,16 +1,12 @@
-const ENV = "production";
+const env = "dev"
 
 const config = {
-  development: {
+  dev: {
     SERVER_URL: "http://localhost:3000",
   },
-  production: {
+  prod: {
     SERVER_URL: "https://simple-login-and-register-full-stack-app.onrender.com",
   },
-};
+}
 
-export default config[ENV];
-
-// API_URL
-// production
-// development
+export default config[env]
