@@ -1,16 +1,15 @@
 import { api, showAlert, redirectToPage } from "../utils/utils"
-
-import { validateInputs, confirmPasswordMatch, validatePasswordLength, addFieldError } from "../utils/form-validation"
+import { validateInputs, confirmPasswordMatch, validatePasswordLength, addFieldError, removeFieldsError } from "../utils/form-validation"
+import { handleEyeIcon, handleEyeOffIcon } from "../utils/toggle-password-visibility"
 
 const passwordInputs = document.querySelectorAll(".input") as NodeListOf<HTMLInputElement>
 const eyeIcons = document.querySelectorAll(".eye-icon") as NodeListOf<HTMLElement>
 const eyeOffIcons = document.querySelectorAll(".eye-off-icon") as NodeListOf<HTMLElement>
 const form = document.querySelector(".form") as HTMLFormElement
 
-const isVisible = [false, false]
 let token: string
 
-const getToken = () => {
+const getUrlToken = () => {
   const urlParams = new URLSearchParams(window.location.search)
   const urlToken = urlParams.get("token")
 
@@ -21,62 +20,11 @@ const getToken = () => {
   }
 }
 
-getToken()
+getUrlToken()
 
-const handlePasswordInput = (index: number) => {
-  const passwordInput = passwordInputs[index]
-  if (passwordInput.value === "") {
-    hideIcon(isVisible[index], index)
-  } else {
-    showIcon(isVisible[index], index)
-  }
-}
-
-const showIcon = (isVisible: boolean, index: number) => {
-  const eyeIcon = eyeIcons[index]
-  const eyeOffIcon = eyeOffIcons[index]
-
-  if (isVisible) {
-    eyeOffIcon.classList.add("visible")
-  } else {
-    eyeIcon.classList.add("visible")
-  }
-}
-
-const hideIcon = (isVisible: boolean, index: number) => {
-  const eyeIcon = eyeIcons[index]
-  const eyeOffIcon = eyeOffIcons[index]
-
-  if (isVisible) {
-    eyeOffIcon.classList.remove("visible")
-  } else {
-    eyeIcon.classList.remove("visible")
-  }
-}
-
-const handleEyeIcon = (e: Event, index: number) => {
-  e.preventDefault()
-  const passwordInput = passwordInputs[index]
-  passwordInput.type = "text"
-  isVisible[index] = true
-  eyeIcons[index].classList.remove("visible")
-  eyeOffIcons[index].classList.add("visible")
-}
-
-const handleEyeOffIcon = (e: Event, index: number) => {
-  e.preventDefault()
-  const passwordInput = passwordInputs[index]
-  passwordInput.type = "password"
-  isVisible[index] = false
-  eyeOffIcons[index].classList.remove("visible")
-  eyeIcons[index].classList.add("visible")
-}
-
-passwordInputs.forEach((input, index) => {
-  console.log(input)
-  input.addEventListener("input", () => handlePasswordInput(index))
-  eyeIcons[index].addEventListener("click", (e) => handleEyeIcon(e, index))
-  eyeOffIcons[index].addEventListener("click", (e) => handleEyeOffIcon(e, index))
+passwordInputs.forEach((passwordInput, i) => {
+  eyeIcons[i].addEventListener("click", () => handleEyeIcon(passwordInput, eyeIcons[i], eyeOffIcons[i]))
+  eyeOffIcons[i].addEventListener("click", () => handleEyeOffIcon(passwordInput, eyeIcons[i], eyeOffIcons[i]))
 })
 
 const handleFormSubmit = (e: Event) => {
@@ -86,26 +34,27 @@ const handleFormSubmit = (e: Event) => {
   const inputs = document.querySelectorAll<HTMLInputElement>(".input")
   const passwordInput = document.querySelector("#password-input") as HTMLInputElement
   const confirmPasswordInput = document.querySelector("#confirm-password-input") as HTMLInputElement
-  // const requiredFieldsDiv = document.querySelectorAll(".field-required")
-  const errorMessage = document.querySelector(".error-message") as HTMLElement
   const alertMessage = document.querySelector(".alert-message") as HTMLElement
   const errorMessages = document.querySelectorAll(".error-message") as NodeList
 
   const passwordValue = passwordInput.value.trim()
   const passwordLabel = labels[0] as HTMLElement
-  const passwordError = errorMessages[0] as HTMLElement
 
   const confirmPasswordValue = confirmPasswordInput.value.trim()
   const confirmPasswordLabel = labels[1] as HTMLElement
 
+  const globalError = errorMessages[2] as HTMLElement
+
+  removeFieldsError(errorMessages, inputs, labels, globalError)
+
   if (validateInputs(labels, inputs, errorMessages)) return
 
   if (
-    confirmPasswordMatch(passwordValue, confirmPasswordValue, errorMessage, confirmPasswordInput, confirmPasswordLabel)
+    confirmPasswordMatch(passwordValue, confirmPasswordValue, globalError, confirmPasswordInput, confirmPasswordLabel)
   )
     return
 
-  if (validatePasswordLength(passwordValue, errorMessage, passwordInput, passwordLabel)) return
+  if (validatePasswordLength(passwordValue, globalError, passwordInput, passwordLabel)) return
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(".submit-button") as HTMLButtonElement
@@ -139,7 +88,7 @@ const handleFormSubmit = (e: Event) => {
 
       submitButton.classList.remove("loading")
 
-      addFieldError(passwordError, passwordInput, message, true, passwordLabel, true)
+      addFieldError(globalError, passwordInput, message, true, passwordLabel, true)
     }
   }
 

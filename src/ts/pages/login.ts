@@ -1,4 +1,4 @@
-import { api, showAlert, redirectToPage, verifyAuth } from "../utils/utils"
+import { api, showAlert, redirectToPage, verifyToken } from "../utils/utils"
 import { validateEmail, validateInputs, addFieldError, removeFieldsError } from "../utils/form-validation"
 import { handleEyeIcon, handleEyeOffIcon } from "../utils/toggle-password-visibility"
 
@@ -7,7 +7,7 @@ const eyeIcon = document.querySelector(".eye-icon") as HTMLElement
 const eyeOffIcon = document.querySelector(".eye-off-icon") as HTMLElement
 const form = document.querySelector(".form") as HTMLFormElement
 
-verifyAuth("my-account")
+verifyToken("my-account")
 
 const handleFormSubmit = (e: Event) => {
   e.preventDefault()
@@ -24,7 +24,6 @@ const handleFormSubmit = (e: Event) => {
   const emailLabel = labels[0] as HTMLElement
   const emailError = errorMessages[0] as HTMLElement
   const passwordLabel = labels[1] as HTMLElement
-  // const passwordError = errorMessages[1] as HTMLElement
 
   const globalError = errorMessages[2] as HTMLElement
 

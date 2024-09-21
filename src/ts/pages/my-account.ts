@@ -1,22 +1,17 @@
-import { api, showAlert, redirectToPage } from "../utils/utils"
+import { api, showAlert, redirectToPage, getUserData } from "../utils/utils"
 
 const logoutButton = document.querySelector(".logout-button") as HTMLButtonElement
 
-const verifyToken = async () => {
+const fetchData = async (page: string) => {
   const userName = document.querySelector(".user-name") as HTMLElement
 
-  try {
-    const res = await api.get("/api/auth/verify")
-
-    userName.textContent = res.data.name
-  } catch (e) {
-    console.log(e.response.data)
-
-    window.location.href = "./login.html"
+  const data = await getUserData(page)
+  if (data) {
+    userName.textContent = data.name
   }
 }
 
-verifyToken()
+fetchData("login")
 
 const handleLogoutButton = () => {
   const logout = async () => {

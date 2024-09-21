@@ -4,7 +4,6 @@ const validateEmail = (
   emailInput: HTMLInputElement,
   label: HTMLElement
 ) => {
-
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   if (!regex.test(emailValue)) {
@@ -62,7 +61,6 @@ const confirmPasswordMatch = (
   confirmPasswordInput: HTMLInputElement,
   label: HTMLElement
 ) => {
-
   if (password !== confirmPassword) {
     addFieldError(errorMessage, confirmPasswordInput, "Las contraseñas no coinciden.", true, label, true)
 

@@ -1,10 +1,9 @@
-import { api, showAlert, redirectToPage, verifyAuth } from "../utils/utils"
-
+import { api, showAlert, redirectToPage, verifyToken } from "../utils/utils"
 import { validateEmail, validateInputs, addFieldError, removeFieldsError } from "../utils/form-validation"
 
 const form = document.querySelector(".form") as HTMLFormElement
 
-verifyAuth("my-account")
+verifyToken("my-account")
 
 const handleFormSubmit = (e: Event) => {
   e.preventDefault()

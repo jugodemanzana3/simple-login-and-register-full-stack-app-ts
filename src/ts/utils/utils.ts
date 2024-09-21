@@ -25,15 +25,28 @@ const redirectToPage = (page: string) => {
   }, 3000)
 }
 
-// auth-validation.ts
-const verifyAuth = async (page: string) => {
+const verifyToken = async (page: string) => {
   try {
-    await api.get("/api/auth/verify")
+    const res = await api.get("/api/auth/verify")
 
     window.location.href = `./${page}.html`
+
+    return res.data
   } catch (e) {
     console.error(e.response.data)
   }
 }
 
-export { api, showAlert, redirectToPage, verifyAuth }
+const getUserData = async (page: string) => {
+  try {
+    const res = await api.get("/api/auth/verify")
+
+    return res.data
+  } catch (e) {
+    console.error(e.response.data)
+
+    window.location.href = `./${page}.html`
+  }
+}
+
+export { api, showAlert, redirectToPage, verifyToken, getUserData }
