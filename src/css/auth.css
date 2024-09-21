@@ -39,8 +39,10 @@
   width: 400px;
 }
 
-.field {
-  margin-bottom: 18px;
+.field-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
 }
 
 .label {
@@ -94,10 +96,9 @@
 }
 
 .error-message {
-  margin-top: 12px;
+  margin-top: 8px;
   color: #9a0000;
   font-size: 14px;
-  font-weight: 600;
   display: none;
 }
 
@@ -105,7 +106,7 @@
   font-size: 14px;
   color: #5a5a5a;
   margin-bottom: 20px;
-  margin-top: 2px;
+  margin-top: 20px;
   text-decoration: underline;
 }
 

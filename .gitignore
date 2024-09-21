@@ -1,7 +1,5 @@
-.vscode/
+vscode/
 
 ignore/
 
 node_modules/
-
-comment-code.js

@@ -1,8 +1,13 @@
-import { validateInputs, confirmPasswordMatch, validatePasswordLength } from "./utils.js"
+import { api, showAlert, redirectToPage } from "../utils/utils"
 
-import config from "./config.js"
+import { validateInputs, confirmPasswordMatch, validatePasswordLength, addFieldError } from "../utils/form-validation"
 
-//
+const passwordInputs = document.querySelectorAll(".input") as NodeListOf<HTMLInputElement>
+const eyeIcons = document.querySelectorAll(".eye-icon") as NodeListOf<HTMLElement>
+const eyeOffIcons = document.querySelectorAll(".eye-off-icon") as NodeListOf<HTMLElement>
+const form = document.querySelector(".form") as HTMLFormElement
+
+const isVisible = [false, false]
 let token: string
 
 const getToken = () => {
@@ -17,16 +22,6 @@ const getToken = () => {
 }
 
 getToken()
-
-console.log(token)
-
-// Revisar
-// Show and hide password for multiple inputs
-const passwordInputs = document.querySelectorAll(".input") as NodeListOf<HTMLInputElement>
-const eyeIcons = document.querySelectorAll(".eye-icon") as NodeListOf<HTMLElement>
-const eyeOffIcons = document.querySelectorAll(".eye-off-icon") as NodeListOf<HTMLElement>
-
-const isVisible = [false, false]
 
 const handlePasswordInput = (index: number) => {
   const passwordInput = passwordInputs[index]
@@ -84,95 +79,67 @@ passwordInputs.forEach((input, index) => {
   eyeOffIcons[index].addEventListener("click", (e) => handleEyeOffIcon(e, index))
 })
 
-//
-const form = document.querySelector(".form") as HTMLFormElement
-
 const handleFormSubmit = (e: Event) => {
   e.preventDefault()
+
   const labels = document.querySelectorAll<HTMLInputElement>(".label")
   const inputs = document.querySelectorAll<HTMLInputElement>(".input")
-
-  const passwordLabel = document.querySelector("#password-label") as HTMLInputElement
-  const confirmPasswordLabel = document.querySelector("#confirm-password-label") as HTMLInputElement
-
   const passwordInput = document.querySelector("#password-input") as HTMLInputElement
   const confirmPasswordInput = document.querySelector("#confirm-password-input") as HTMLInputElement
-
-  const requiredFields = document.querySelectorAll(".field-required")
+  // const requiredFieldsDiv = document.querySelectorAll(".field-required")
   const errorMessage = document.querySelector(".error-message") as HTMLElement
   const alertMessage = document.querySelector(".alert-message") as HTMLElement
+  const errorMessages = document.querySelectorAll(".error-message") as NodeList
 
-  if (validateInputs(labels, inputs, requiredFields, errorMessage)) return
+  const passwordValue = passwordInput.value.trim()
+  const passwordLabel = labels[0] as HTMLElement
+  const passwordError = errorMessages[0] as HTMLElement
+
+  const confirmPasswordValue = confirmPasswordInput.value.trim()
+  const confirmPasswordLabel = labels[1] as HTMLElement
+
+  if (validateInputs(labels, inputs, errorMessages)) return
 
   if (
-    confirmPasswordMatch(
-      passwordInput.value,
-      confirmPasswordInput.value,
-      errorMessage,
-      confirmPasswordLabel,
-      confirmPasswordInput
-    )
+    confirmPasswordMatch(passwordValue, confirmPasswordValue, errorMessage, confirmPasswordInput, confirmPasswordLabel)
   )
     return
 
-  if (validatePasswordLength(passwordInput.value, errorMessage, passwordLabel, passwordInput)) return
+  if (validatePasswordLength(passwordValue, errorMessage, passwordInput, passwordLabel)) return
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(".submit-button") as HTMLButtonElement
-    const url = `${config.SERVER_URL}/api/auth/reset-password`
 
-    const bodyData = JSON.stringify({
-      newPassword: confirmPasswordInput.value,
+    const formData = JSON.stringify({
+      newPassword: passwordValue,
+      confirmNewPassword: confirmPasswordValue,
     })
 
     submitButton.classList.add("loading")
 
     try {
-      const res = await fetch(url, {
-        method: "POST",
+      const res = await api.post("/api/auth/reset-password", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
         },
-        body: bodyData,
       })
 
-      const data = await res.json()
-
-      if (res.ok) {
-        submitButton.classList.remove("loading")
-
-        alertMessage.textContent = data.message
-        alertMessage.classList.add("visible")
-
-        setTimeout(() => {
-          alertMessage.classList.remove("visible")
-        }, 3000)
-
-        passwordInput.value = ""
-        confirmPasswordInput.value = ""
-
-        setTimeout(() => {
-          window.location.href = "./login.html"
-        }, 3000)
-      } else {
-        submitButton.classList.remove("loading")
-
-        errorMessage.textContent = data.error
-        errorMessage.classList.add("visible")
-
-        passwordLabel.style.color = "#9A0000"
-        passwordInput.style.outlineColor = "#9A0000"
-        passwordInput.style.borderColor = "#9A0000"
-
-        confirmPasswordLabel.style.color = "#9A0000"
-        confirmPasswordInput.style.outlineColor = "#9A0000"
-        confirmPasswordInput.style.borderColor = "#9A0000"
-      }
-    } catch (e) {
       submitButton.classList.remove("loading")
 
-      console.error(e)
+      showAlert(alertMessage, res.data.message)
+
+      passwordInput.value = ""
+      confirmPasswordInput.value = ""
+
+      redirectToPage("./my-account.html")
+    } catch (e) {
+      console.error(e.response.data)
+
+      const message: string = e.response.data.message
+
+      submitButton.classList.remove("loading")
+
+      addFieldError(passwordError, passwordInput, message, true, passwordLabel, true)
     }
   }
 

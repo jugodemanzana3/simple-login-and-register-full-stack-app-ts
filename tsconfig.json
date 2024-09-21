@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "module": "NodeNext",
-    "outDir": "dist",
+    "module": "ESNext",
+    "outDir": "dist/js",
     "rootDir": "src/ts",
     "esModuleInterop": true,
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "Node"
   },
   "exclude": ["node_modules/**/*", "ignore/**/*"]
 }

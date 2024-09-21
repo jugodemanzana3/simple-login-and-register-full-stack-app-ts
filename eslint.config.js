@@ -20,7 +20,9 @@ const languageOptions = {
 
 export default [
   { files: ["**/src/*.ts"] },
-  { ignores: ["node_modules/**/*", "prod/**/*", "dist/**/*", "comment-code.js"] },
+  {
+    ignores: ["node_modules/**/*", "prod/**/*", "dist/**/*", "comment-code.js"],
+  },
   {
     plugins: {
       ...pluginOptions,
