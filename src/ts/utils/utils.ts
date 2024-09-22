@@ -21,7 +21,7 @@ const showAlert = (alertMessageDiv: HTMLElement, message: string) => {
 
 const redirectToPage = (page: string) => {
   setTimeout(() => {
-    window.location.href = page
+    window.location.href = `./${page}.html`
   }, 3000)
 }
 

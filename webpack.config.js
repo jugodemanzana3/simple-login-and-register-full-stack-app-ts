@@ -32,8 +32,7 @@ export default {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
   },
-  mode: "development",
-  devtool: "source-map",
+  mode: "production",
   devServer: {
     static: "./dist",
     hot: true,

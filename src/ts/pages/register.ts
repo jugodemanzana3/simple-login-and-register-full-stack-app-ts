@@ -28,11 +28,9 @@ const handleFormSubmit = (e: Event) => {
   const nameValue = nameInput.value.trim()
 
   const emailValue = emailInput.value.trim()
-  const emailError = errorMessages[1] as HTMLElement
   const emailLabel = labels[1] as HTMLElement
 
   const passwordValue = passwordInput.value.trim()
-  const passwordError = errorMessages[2] as HTMLElement
   const passwordLabel = labels[2] as HTMLElement
 
   const globalError = errorMessages[3] as HTMLElement
@@ -41,9 +39,9 @@ const handleFormSubmit = (e: Event) => {
 
   if (validateInputs(labels, inputs, errorMessages)) return
 
-  if (validateEmail(emailValue, emailError, emailInput, emailLabel)) return
+  if (validateEmail(emailValue, globalError, emailInput, emailLabel)) return
 
-  if (validatePasswordLength(passwordValue, passwordError, passwordInput, passwordLabel)) return
+  if (validatePasswordLength(passwordValue, globalError, passwordInput, passwordLabel)) return
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(".submit-button") as HTMLButtonElement
@@ -64,7 +62,7 @@ const handleFormSubmit = (e: Event) => {
 
       showAlert(alertMessage, res.data.message)
 
-      redirectToPage("./my-account.html")
+      redirectToPage("my-account")
     } catch (e) {
       console.error(e.response.data)
 
@@ -72,7 +70,7 @@ const handleFormSubmit = (e: Event) => {
 
       submitButton.classList.remove("loading")
 
-      addFieldError(passwordError, passwordInput, message, true, passwordLabel, true)
+      addFieldError(globalError, passwordInput, message, true, passwordLabel, true)
     }
   }
 

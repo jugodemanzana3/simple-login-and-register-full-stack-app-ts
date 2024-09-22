@@ -7,7 +7,7 @@ const validateEmail = (
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   if (!regex.test(emailValue)) {
-    addFieldError(errorMessage, emailInput, "Email invalido.", true, label, true)
+    addFieldError(errorMessage, emailInput, "Correo invalido.", true, label, true)
 
     return true
   }
@@ -70,20 +70,11 @@ const confirmPasswordMatch = (
   return false
 }
 
-const validateInput = (inputValue: string, requiredField: HTMLElement, input: HTMLElement) => {
-  const labelName = input.id.replace("-input", "")
-  const label = document.querySelector(`label[for="${labelName}"]`) as HTMLElement
-
+const validateInput = (inputValue: string, errorMessage: HTMLElement, input: HTMLInputElement, label: HTMLElement) => {
   if (inputValue === "") {
-    requiredField.style.display = "block"
-
-    label.style.color = "#9A0000"
-    input.style.outlineColor = "#9A0000"
-    input.style.borderColor = "#9A0000"
+    addFieldError(errorMessage, input, "Este campo es obligatorio.", false, label, false)
 
     return true
-  } else {
-    requiredField.style.display = ""
   }
 
   return false
@@ -114,18 +105,15 @@ const addFieldError = (
 }
 
 const removeFieldsError = (errorMessages: NodeList, inputs: NodeList, labels: NodeList, globalError: HTMLElement) => {
-  console.log("removeFieldsError")
-
   inputs.forEach((input, i) => {
     const label = labels[i] as HTMLElement
     const errorMessage = errorMessages[i] as HTMLElement
-    const inputElement = inputs[i] as HTMLInputElement
+    const inputElement = input as HTMLInputElement
 
     errorMessage.textContent = ""
     errorMessage.classList.remove("visible")
 
     label.style.color = ""
-
     inputElement.style.outlineColor = ""
     inputElement.style.borderColor = ""
   })

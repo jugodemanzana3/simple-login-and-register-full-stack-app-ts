@@ -1,5 +1,5 @@
 import { api, showAlert, redirectToPage, verifyToken } from "../utils/utils"
-import { validateEmail, validateInputs, addFieldError, removeFieldsError } from "../utils/form-validation"
+import { validateEmail, validateInput, addFieldError, removeFieldsError } from "../utils/form-validation"
 
 const form = document.querySelector(".form") as HTMLFormElement
 
@@ -12,19 +12,18 @@ const handleFormSubmit = (e: Event) => {
   const inputs = document.querySelectorAll<HTMLInputElement>(".input") as NodeList
   const alertMessage = document.querySelector(".alert-message") as HTMLElement
   const emailInput = document.querySelector("#email-input") as HTMLInputElement
+  const emailLabel = document.querySelector("#email-label") as HTMLInputElement
   const errorMessages = document.querySelectorAll(".error-message") as NodeList
 
-  const emailLabel = labels[0] as HTMLElement
-  const emailError = errorMessages[0] as HTMLElement
   const emailValue = emailInput.value.trim()
-
+  const emailError = errorMessages[0] as HTMLElement
   const globalError = errorMessages[1] as HTMLElement
 
   removeFieldsError(errorMessages, inputs, labels, globalError)
 
-  if (validateInputs(labels, inputs, errorMessages)) return
+  if (validateInput(emailValue, emailError, emailInput, emailLabel)) return
 
-  if (validateEmail(emailValue, emailError, emailInput, emailLabel)) return
+  if (validateEmail(emailValue, globalError, emailInput, emailLabel)) return
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(".submit-button") as HTMLButtonElement
@@ -42,7 +41,7 @@ const handleFormSubmit = (e: Event) => {
 
       emailInput.value = ""
 
-      redirectToPage("./login.html")
+      redirectToPage("login")
     } catch (e) {
       console.error(e.response.data)
 
@@ -50,7 +49,7 @@ const handleFormSubmit = (e: Event) => {
 
       submitButton.classList.remove("loading")
 
-      addFieldError(emailError, emailInput, message, true, emailLabel, true)
+      addFieldError(globalError, emailInput, message, true, emailLabel, true)
     }
   }
 

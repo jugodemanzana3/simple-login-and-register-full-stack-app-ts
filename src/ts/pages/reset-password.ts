@@ -80,7 +80,7 @@ const handleFormSubmit = (e: Event) => {
       passwordInput.value = ""
       confirmPasswordInput.value = ""
 
-      redirectToPage("./my-account.html")
+      redirectToPage("my-account")
     } catch (e) {
       console.error(e.response.data)
 

@@ -22,7 +22,7 @@ const handleLogoutButton = () => {
 
       showAlert(alertMessage, res.data.message)
 
-      redirectToPage("./login.html")
+      redirectToPage("login")
     } catch (e) {
       console.error(e.response.data)
     }

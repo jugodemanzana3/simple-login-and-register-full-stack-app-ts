@@ -22,7 +22,6 @@ const handleFormSubmit = (e: Event) => {
   const passwordValue = passwordInput.value.trim()
 
   const emailLabel = labels[0] as HTMLElement
-  const emailError = errorMessages[0] as HTMLElement
   const passwordLabel = labels[1] as HTMLElement
 
   const globalError = errorMessages[2] as HTMLElement
@@ -31,7 +30,7 @@ const handleFormSubmit = (e: Event) => {
 
   if (validateInputs(labels, inputs, errorMessages)) return
 
-  if (validateEmail(emailValue, emailError, emailInput, emailLabel)) return
+  if (validateEmail(emailValue, globalError, emailInput, emailLabel)) return
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(".submit-button") as HTMLButtonElement
@@ -51,17 +50,13 @@ const handleFormSubmit = (e: Event) => {
 
       showAlert(alertMessage, res.data.message)
 
-      redirectToPage("./my-account.html")
+      redirectToPage("my-account")
     } catch (e) {
       console.error(e.response.data)
 
       const message: string = e.response.data.message
 
       submitButton.classList.remove("loading")
-
-      // if (e.response) console.log("res")
-
-      // if (e.request) console.log("req")
 
       if (message.includes("cuenta")) {
         addFieldError(globalError, emailInput, message, true, emailLabel, true)

@@ -33,11 +33,6 @@ export default [
       ...languageOptions,
     },
   },
-  // {
-  //   rules: {
-  //     "prettier/prettier": "error",
-  //   },
-  // },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
 ]
