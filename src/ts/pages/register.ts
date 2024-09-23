@@ -70,7 +70,7 @@ const handleFormSubmit = (e: Event) => {
 
       submitButton.classList.remove("loading")
 
-      addFieldError(globalError, passwordInput, message, true, passwordLabel, true)
+      addFieldError(globalError, emailInput, message, true, emailLabel, true)
     }
   }
 
