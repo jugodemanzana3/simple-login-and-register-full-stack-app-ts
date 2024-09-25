@@ -1,34 +1,41 @@
-import { api, showAlert, redirectToPage, getUserData } from "../utils/utils"
+import { api, showAlert, redirectToPage, getUserData } from "../utils/utils";
+import { PAGES, SELECTORS } from "../constants";
 
-const logoutButton = document.querySelector(".logout-button") as HTMLButtonElement
+import { isAxiosError } from "axios";
+
+const logoutButton = document.querySelector(SELECTORS.logoutButton) as HTMLButtonElement;
 
 const fetchData = async (page: string) => {
-  const userName = document.querySelector(".user-name") as HTMLElement
+  const userName = document.querySelector(SELECTORS.userName) as HTMLElement;
 
-  const data = await getUserData(page)
+  const data = await getUserData(page);
   if (data) {
-    userName.textContent = data.name
+    userName.textContent = data.name;
   }
-}
+};
 
-fetchData("login")
+fetchData(PAGES.login);
 
 const handleLogoutButton = () => {
   const logout = async () => {
-    const alertMessage = document.querySelector(".alert-message") as HTMLElement
+    const alertMessage = document.querySelector(SELECTORS.alerMessage) as HTMLElement;
 
     try {
-      const res = await api.post("/api/auth/logout")
+      const res = await api.post("/api/auth/logout");
 
-      showAlert(alertMessage, res.data.message)
+      showAlert(alertMessage, res.data.message);
 
-      redirectToPage("login")
-    } catch (e) {
-      console.error(e.response.data)
+      redirectToPage(PAGES.login);
+    } catch (e: unknown) {
+      if (isAxiosError(e)) {
+        if (e.response) {
+          console.error(e.response.data);
+        }
+      }
     }
-  }
+  };
 
-  logout()
-}
+  logout();
+};
 
-logoutButton.addEventListener("click", handleLogoutButton)
+logoutButton.addEventListener("click", handleLogoutButton);

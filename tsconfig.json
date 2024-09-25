@@ -5,7 +5,10 @@
     "outDir": "dist/js",
     "rootDir": "src/ts",
     "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "strict": true,
+    "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["node_modules/**/*"]
+  "include": ["src/ts/**/*"]
 }

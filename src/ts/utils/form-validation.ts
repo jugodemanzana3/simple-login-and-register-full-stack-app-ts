@@ -1,43 +1,45 @@
+import { CSS_CLASSES, ERROR_MESSAGES } from "../constants";
+
 const validateEmail = (
   emailValue: string,
   errorMessage: HTMLElement,
   emailInput: HTMLInputElement,
   label: HTMLElement
 ) => {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!regex.test(emailValue)) {
-    addFieldError(errorMessage, emailInput, "Correo invalido.", true, label, true)
+    addFieldError(errorMessage, emailInput, ERROR_MESSAGES.invalidMail, true, label, true);
 
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 const validateInputs = (labels: NodeList, inputs: NodeList, errorMessages: NodeList) => {
-  let emptyInput = false
+  let emptyInput = false;
 
   inputs.forEach((input, i) => {
-    const inputElement = input as HTMLInputElement
+    const inputElement = input as HTMLInputElement;
 
     if (inputElement.value === "") {
-      const label = labels[i] as HTMLElement
-      const errorMessage = errorMessages[i] as HTMLElement
+      const label = labels[i] as HTMLElement;
+      const errorMessage = errorMessages[i] as HTMLElement;
 
-      addFieldError(errorMessage, inputElement, "Este campo es obligatorio.", false, label, false)
+      addFieldError(errorMessage, inputElement, ERROR_MESSAGES.requiredField, false, label, false);
 
-      emptyInput = true
+      emptyInput = true;
     } else {
-      const label = labels[i] as HTMLElement
-      const errorMessage = errorMessages[i] as HTMLElement
+      const label = labels[i] as HTMLElement;
+      const errorMessage = errorMessages[i] as HTMLElement;
 
-      removeFieldError(errorMessage, inputElement, label)
+      removeFieldError(errorMessage, inputElement, label);
     }
-  })
+  });
 
-  return emptyInput
-}
+  return emptyInput;
+};
 
 const validatePasswordLength = (
   password: string,
@@ -46,13 +48,13 @@ const validatePasswordLength = (
   label: HTMLElement
 ) => {
   if (password.length < 8) {
-    addFieldError(errorMessage, input, "Logitud de contraseña invalida.", true, label, true)
+    addFieldError(errorMessage, input, ERROR_MESSAGES.invalidPasswordLength, true, label, true);
 
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 const confirmPasswordMatch = (
   password: string,
@@ -62,23 +64,23 @@ const confirmPasswordMatch = (
   label: HTMLElement
 ) => {
   if (password !== confirmPassword) {
-    addFieldError(errorMessage, confirmPasswordInput, "Las contraseñas no coinciden.", true, label, true)
+    addFieldError(errorMessage, confirmPasswordInput, ERROR_MESSAGES.passwordNotMath, true, label, true);
 
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 const validateInput = (inputValue: string, errorMessage: HTMLElement, input: HTMLInputElement, label: HTMLElement) => {
   if (inputValue === "") {
-    addFieldError(errorMessage, input, "Este campo es obligatorio.", false, label, false)
+    addFieldError(errorMessage, input, ERROR_MESSAGES.requiredField, false, label, false);
 
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 const addFieldError = (
   errorMessage: HTMLElement,
@@ -89,47 +91,47 @@ const addFieldError = (
   isFocused: boolean
 ) => {
   if (isBold) {
-    errorMessage.style.fontWeight = "600"
+    errorMessage.style.fontWeight = "600";
   } else {
-    errorMessage.style.fontWeight = "500"
+    errorMessage.style.fontWeight = "500";
   }
 
-  errorMessage.textContent = message
-  errorMessage.classList.add("visible")
+  errorMessage.textContent = message;
+  errorMessage.classList.add(CSS_CLASSES.visible);
 
-  if (isFocused) input.focus()
+  if (isFocused) input.focus();
 
-  label.style.color = "#9A0000"
-  input.style.outlineColor = "#9A0000"
-  input.style.borderColor = "#9A0000"
-}
+  label.style.color = "#9A0000";
+  input.style.outlineColor = "#9A0000";
+  input.style.borderColor = "#9A0000";
+};
 
 const removeFieldsError = (errorMessages: NodeList, inputs: NodeList, labels: NodeList, globalError: HTMLElement) => {
   inputs.forEach((input, i) => {
-    const label = labels[i] as HTMLElement
-    const errorMessage = errorMessages[i] as HTMLElement
-    const inputElement = input as HTMLInputElement
+    const label = labels[i] as HTMLElement;
+    const errorMessage = errorMessages[i] as HTMLElement;
+    const inputElement = input as HTMLInputElement;
 
-    errorMessage.textContent = ""
-    errorMessage.classList.remove("visible")
+    errorMessage.textContent = "";
+    errorMessage.classList.remove(CSS_CLASSES.visible);
 
-    label.style.color = ""
-    inputElement.style.outlineColor = ""
-    inputElement.style.borderColor = ""
-  })
+    label.style.color = "";
+    inputElement.style.outlineColor = "";
+    inputElement.style.borderColor = "";
+  });
 
-  globalError.textContent = ""
-  globalError.classList.remove("visible")
-}
+  globalError.textContent = "";
+  globalError.classList.remove(CSS_CLASSES.visible);
+};
 
 const removeFieldError = (errorMessage: HTMLElement, input: HTMLInputElement, label: HTMLElement) => {
-  errorMessage.textContent = ""
-  errorMessage.classList.remove("visible")
+  errorMessage.textContent = "";
+  errorMessage.classList.remove(CSS_CLASSES.visible);
 
-  label.style.color = ""
-  input.style.outlineColor = ""
-  input.style.borderColor = ""
-}
+  label.style.color = "";
+  input.style.outlineColor = "";
+  input.style.borderColor = "";
+};
 
 export {
   validateEmail,
@@ -140,4 +142,4 @@ export {
   addFieldError,
   removeFieldsError,
   removeFieldError,
-}
+};

@@ -1,12 +1,3 @@
-const env = "prod"
+const API_URL = process.env.API_URL;
 
-const config = {
-  dev: {
-    SERVER_URL: "http://localhost:3000",
-  },
-  prod: {
-    SERVER_URL: "https://simple-login-and-register-full-stack-app.onrender.com",
-  },
-}
-
-export default config[env]
+export { API_URL };
