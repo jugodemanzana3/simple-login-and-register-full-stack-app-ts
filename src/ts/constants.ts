@@ -21,7 +21,7 @@ const SUCCESS_MESSAGES = {};
 
 const SELECTORS = {
   confirmPasswordInput: "#confirm-password-input",
-  nameInput: ".name-input",
+  nameInput: "#name-input",
   logoutButton: ".logout-button",
   userName: ".user-name",
   label: ".label",
@@ -37,4 +37,8 @@ const SELECTORS = {
   eyeOffIcon: ".eye-off-icon",
 };
 
-export { ERROR_MESSAGES, PAGES, CSS_CLASSES, SUCCESS_MESSAGES, SELECTORS };
+const COLORS = {
+  red: "#9A0000",
+};
+
+export { ERROR_MESSAGES, PAGES, CSS_CLASSES, SUCCESS_MESSAGES, SELECTORS, COLORS };

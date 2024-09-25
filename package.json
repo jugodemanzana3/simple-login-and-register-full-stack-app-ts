@@ -1,5 +1,5 @@
 {
-  "name": "simple-login-and-register-full-stack-app-ts",
+  "name": "simple-auth-app-client-ts",
   "version": "1.0.0",
   "scripts": {
     "build:prod": "cross-env NODE_ENV=production npx webpack",

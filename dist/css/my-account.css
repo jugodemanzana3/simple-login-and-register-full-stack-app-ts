@@ -4,27 +4,30 @@
   padding: 0 18px;
   width: 1024px;
 }
-.home {
+.my-account {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
 .welcome {
-  color: #202020;
+  color: var(--black-100);
 }
 .logout-button {
   background-color: transparent;
   border: none;
-  color: #0d7c66;
+  color: var(--green-100);
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
 }
+.logout-button:hover {
+  color: var(--green-200);
+}
 .alert-message {
-  background-color: #fff;
+  background-color: var(--white-100);
   border-radius: 4px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.16);
-  color: #202020;
+  color: var(--black-100);
   display: none;
   font-size: 14px;
   font-weight: 700;

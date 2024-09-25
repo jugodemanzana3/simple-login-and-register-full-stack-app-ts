@@ -26,7 +26,7 @@ const handleFormSubmit = (e: Event) => {
   const nameInput = document.querySelector(SELECTORS.nameInput) as HTMLInputElement;
   const emailInput = document.querySelector(SELECTORS.emailInput) as HTMLInputElement;
   const passwordInput = document.querySelector(SELECTORS.passwordInput) as HTMLInputElement;
-  const errorMessages = document.querySelectorAll(SELECTORS.alerMessage) as NodeList;
+  const errorMessages = document.querySelectorAll(SELECTORS.errorMessage) as NodeList;
 
   const nameValue = nameInput.value.trim();
 
@@ -65,7 +65,7 @@ const handleFormSubmit = (e: Event) => {
 
       showAlert(alertMessage, res.data.message);
 
-      redirectToPage("my-account");
+      redirectToPage(PAGES.myAccount);
     } catch (e: unknown) {
       if (isAxiosError(e)) {
         if (e.response) {

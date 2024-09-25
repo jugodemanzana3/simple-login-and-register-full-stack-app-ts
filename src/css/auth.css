@@ -9,7 +9,7 @@
 .login,
 .forgot-password,
 .reset-password {
-  background-color: #ffffff;
+  background-color: var(--white-100);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.16);
   padding: 40px;
   border-radius: 8px;
@@ -23,13 +23,13 @@
   text-align: center;
   margin-bottom: 40px;
   font-size: 24px;
-  color: #202020;
+  color: var(--black-100);
   font-weight: 700;
 }
 
 .instruction {
   font-size: 14px;
-  color: #5a5a5a;
+  color: var(--gray-200);
   line-height: 1.5;
   margin-bottom: 20px;
   max-width: 400px;
@@ -47,7 +47,7 @@
 
 .label {
   font-size: 14px;
-  color: #202020;
+  color: var(--black-100);
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -57,22 +57,18 @@
 }
 
 .input {
-  border: 1px solid #cacaca;
+  border: 1px solid var(--gray-100);
   padding: 0 44px 0 12px;
   font-size: 14px;
   width: 100%;
   border-radius: 4px;
-  color: #202020;
+  color: var(--black-100);
   height: 36px;
 }
 
-.input::placeholder {
-  color: #9a9a9a;
-}
-
 .input:focus {
-  outline-color: #0d7c66;
-  border: 1px solid #0d7c66;
+  outline-color: var(--green-100);
+  border: 1px solid var(--green-100);
   background-color: transparent;
 }
 
@@ -88,7 +84,7 @@
 }
 
 .field-required {
-  color: #9a0000;
+  color: var(--red-100);
   font-weight: 500;
   font-size: 14px;
   margin-top: 8px;
@@ -97,14 +93,14 @@
 
 .error-message {
   margin-top: 8px;
-  color: #9a0000;
+  color: var(--red-100);
   font-size: 14px;
   display: none;
 }
 
 .forgot-password-link {
   font-size: 14px;
-  color: #5a5a5a;
+  color: var(--gray-200);
   margin-top: 20px;
   text-decoration: underline;
 }
@@ -114,17 +110,17 @@
   width: 100%;
   border: 0;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--white-100);
   padding: 10px 0;
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #0d7c66;
+  background-color: var(--green-100);
   transition: all 0.1s ease-in-out;
 }
 
 .submit-button:hover {
-  background-color: #066f5a;
+  background-color: var(--green-200);
 }
 
 .already-account,
@@ -138,7 +134,7 @@
 .login-link,
 .register-link {
   font-weight: 600;
-  color: #0d7c66;
+  color: var(--green-100);
 }
 
 .alert-message {
@@ -147,12 +143,12 @@
   top: 12px;
   position: fixed;
   font-size: 14px;
-  color: #202020;
+  color: var(--black-100);
   font-weight: 700;
   border-radius: 4px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #ffffff;
+  background-color: var(--white-100);
   display: none;
 }
 
@@ -176,7 +172,7 @@
 }
 
 .loading:hover {
-  background-color: #0d7c66;
+  background-color: var(--green-200);
 }
 
 @media screen and (max-width: 800px) {

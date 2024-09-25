@@ -1,4 +1,4 @@
-import { CSS_CLASSES, ERROR_MESSAGES } from "../constants";
+import { CSS_CLASSES, ERROR_MESSAGES, COLORS } from "../constants";
 
 const validateEmail = (
   emailValue: string,
@@ -6,9 +6,9 @@ const validateEmail = (
   emailInput: HTMLInputElement,
   label: HTMLElement
 ) => {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!regex.test(emailValue)) {
+  if (!REGEX.test(emailValue)) {
     addFieldError(errorMessage, emailInput, ERROR_MESSAGES.invalidMail, true, label, true);
 
     return true;
@@ -101,9 +101,9 @@ const addFieldError = (
 
   if (isFocused) input.focus();
 
-  label.style.color = "#9A0000";
-  input.style.outlineColor = "#9A0000";
-  input.style.borderColor = "#9A0000";
+  label.style.color = COLORS.red;
+  input.style.outlineColor = COLORS.red;
+  input.style.borderColor = COLORS.red;
 };
 
 const removeFieldsError = (errorMessages: NodeList, inputs: NodeList, labels: NodeList, globalError: HTMLElement) => {

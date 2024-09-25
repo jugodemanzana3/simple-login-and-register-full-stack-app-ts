@@ -5,23 +5,27 @@
   max-width: 100%;
 }
 
-.home {
+.my-account {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
 
 .welcome {
-  color: #202020;
+  color: var(--black-100);
 }
 
 .logout-button {
   background-color: transparent;
   font-weight: 600;
-  color: #0d7c66;
+  color: var(--green-100);
   border: none;
   cursor: pointer;
   font-size: 14px;
+}
+
+.logout-button:hover {
+  color: var(--green-200);
 }
 
 .alert-message {
@@ -30,12 +34,12 @@
   top: 12px;
   position: fixed;
   font-size: 14px;
-  color: #202020;
+  color: var(--black-100);
   font-weight: 700;
   border-radius: 4px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #ffffff;
+  background-color: var(--white-100);
   display: none;
 }
 
