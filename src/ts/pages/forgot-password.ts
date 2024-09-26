@@ -13,7 +13,7 @@ const handleFormSubmit = (e: Event) => {
 
   const labels = document.querySelectorAll<HTMLInputElement>(SELECTORS.label) as NodeList;
   const inputs = document.querySelectorAll<HTMLInputElement>(SELECTORS.input) as NodeList;
-  const alertMessage = document.querySelector(SELECTORS.alerMessage) as HTMLElement;
+  const alertMessage = document.querySelector(SELECTORS.alertMessage) as HTMLElement;
   const emailInput = document.querySelector(SELECTORS.emailInput) as HTMLInputElement;
   const emailLabel = document.querySelector(SELECTORS.emailLabel) as HTMLInputElement;
   const errorMessages = document.querySelectorAll(SELECTORS.errorMessage) as NodeList;

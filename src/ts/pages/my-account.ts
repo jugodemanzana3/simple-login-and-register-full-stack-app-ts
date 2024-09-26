@@ -18,7 +18,7 @@ fetchData(PAGES.login);
 
 const handleLogoutButton = () => {
   const logout = async () => {
-    const alertMessage = document.querySelector(SELECTORS.alerMessage) as HTMLElement;
+    const alertMessage = document.querySelector(SELECTORS.alertMessage) as HTMLElement;
 
     try {
       const res = await api.post("/api/auth/logout");

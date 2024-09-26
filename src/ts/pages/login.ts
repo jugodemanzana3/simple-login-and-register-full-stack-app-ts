@@ -43,7 +43,7 @@ const handleFormSubmit = (e: Event) => {
 
   const dataFetching = async () => {
     const submitButton = document.querySelector(SELECTORS.submitButton) as HTMLButtonElement;
-    const alertMessage = document.querySelector(SELECTORS.alerMessage) as HTMLElement;
+    const alertMessage = document.querySelector(SELECTORS.alertMessage) as HTMLElement;
 
     submitButton.classList.add(CSS_CLASSES.loading);
 

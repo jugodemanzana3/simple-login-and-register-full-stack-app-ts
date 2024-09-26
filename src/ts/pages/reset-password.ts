@@ -43,8 +43,8 @@ const handleFormSubmit = (e: Event) => {
   const inputs = document.querySelectorAll<HTMLInputElement>(SELECTORS.input);
   const passwordInput = document.querySelector(SELECTORS.passwordInput) as HTMLInputElement;
   const confirmPasswordInput = document.querySelector(SELECTORS.confirmPasswordInput) as HTMLInputElement;
-  const alertMessage = document.querySelector(SELECTORS.alerMessage) as HTMLElement;
-  const errorMessages = document.querySelectorAll(SELECTORS.alerMessage) as NodeList;
+  const alertMessage = document.querySelector(SELECTORS.alertMessage) as HTMLElement;
+  const errorMessages = document.querySelectorAll(SELECTORS.errorMessage) as NodeList;
 
   const passwordValue = passwordInput.value.trim();
   const passwordLabel = labels[0] as HTMLElement;

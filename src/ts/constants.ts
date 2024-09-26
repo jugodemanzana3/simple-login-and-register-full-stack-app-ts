@@ -26,7 +26,7 @@ const SELECTORS = {
   userName: ".user-name",
   label: ".label",
   input: ".input",
-  alerMessage: ".alert-message",
+  alertMessage: ".alert-message",
   emailLabel: "#email-label",
   emailInput: "#email-input",
   passwordInput: "#password-input",
